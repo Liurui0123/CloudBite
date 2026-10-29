@@ -12,6 +12,34 @@
 | 管理端 | 经营看板（今日订单/营业额/累计/用户数/待处理）、近 7 天趋势、状态分布、热销 Top5、实时订单推送、菜品增删改（含图片上传）、分类管理、订单状态流转 |
 | 平台能力 | JWT 鉴权、角色隔离（普通用户访问管理接口返回 403）、接口文档聚合、限流、延迟关单 |
 
+## 界面预览
+
+### 用户端
+
+| 登录 | 点餐首页 |
+|---|---|
+| <img src="docs/images/user-login.png" width="420" /> | <img src="docs/images/user-menu.png" width="420" /> |
+
+**点餐首页**：搜索、AI 智能推荐、实时热销榜（Redis ZSET）、分类筛选、菜品卡片（图片上传）、右下角 AI 客服。
+
+| AI 智能推荐 | 购物车 |
+|---|---|
+| <img src="docs/images/user-ai.png" width="420" /> | <img src="docs/images/user-cart.png" width="420" /> |
+
+| 我的订单 |
+|---|
+| <img src="docs/images/user-orders.png" width="720" /> |
+
+**我的订单**：按时间倒序，展示菜品明细、金额、状态与操作（去支付 / 取消 / 详情）。
+
+### 管理端
+
+| 经营看板 |
+|---|
+| <img src="docs/images/dashboard.png" width="720" /> |
+
+**经营看板**：5 个指标卡 + 近 7 天趋势（柱线组合）+ 订单状态环形图 + 热销 Top5 + 最新订单列表，数据通过 **SSE 每 3 秒推送**自动刷新。
+
 ## 架构
 
 ```
