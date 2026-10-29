@@ -1,0 +1,75 @@
+server:
+  port: 18080
+spring:
+  application:
+    name: cloudbite-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: user-service
+          uri: lb://cloudbite-user
+          predicates:
+            - Path=/api/user/**
+        - id: menu-service
+          uri: lb://cloudbite-menu
+          predicates:
+            - Path=/api/menu/**
+        - id: order-service
+          uri: lb://cloudbite-order
+          predicates:
+            - Path=/api/order/**
+        - id: ai-service
+          uri: lb://cloudbite-ai
+          predicates:
+            - Path=/api/ai/**
+        - id: upload-service
+          uri: lb://cloudbite-menu
+          predicates:
+            - Path=/api/upload/**,/uploads/**
+        - id: monitor-service
+          uri: lb://cloudbite-order
+          predicates:
+            - Path=/api/monitor/**
+  config:
+    import: optional:nacos:cloudbite-gateway.yaml
+
+cloudbite:
+  jwt:
+    secret: ${JWT_SECRET:cloudbite-dev-secret-please-change}
+
+# Knife4j 网关聚合：启动后访问 http://localhost:8080/doc.html
+knife4j:
+  gateway:
+    enabled: true
+    strategy: manual
+    routes:
+      - name: 用户服务
+        url: /cloudbite-user/v3/api-docs
+        service-name: cloudbite-user
+        order: 1
+      - name: 菜单服务
+        url: /cloudbite-menu/v3/api-docs
+        service-name: cloudbite-menu
+        order: 2
+      - name: 订单服务
+        url: /cloudbite-order/v3/api-docs
+        service-name: cloudbite-order
+        order: 3
+      - name: AI 服务
+        url: /cloudbite-ai/v3/api-docs
+        service-name: cloudbite-ai
+        order: 4
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO

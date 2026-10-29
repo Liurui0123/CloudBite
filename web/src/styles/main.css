@@ -1,0 +1,45 @@
+:root {
+  --cb-primary: #ff6b35;
+  --cb-primary-dark: #e8541f;
+  --cb-bg: #f6f7fb;
+  --cb-text: #1f2430;
+  --cb-muted: #8a90a2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--cb-bg);
+  color: var(--cb-text);
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.cb-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(22, 28, 45, 0.06);
+}
+
+.cb-price {
+  color: var(--cb-primary);
+  font-weight: 700;
+}
+
+.cb-price::before { content: "￥"; font-size: 0.75em; margin-right: 1px; }
+
+.cb-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+.cb-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+.cb-muted { color: var(--cb-muted); font-size: 13px; }

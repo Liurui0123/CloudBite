@@ -1,0 +1,27 @@
+﻿# Java / Maven
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.iws
+.vscode/
+
+# 前端
+node_modules/
+dist/
+.vite/
+*.local
+
+# 运行时
+logs/
+*.log
+uploads/
+/store/
+
+# 系统
+.DS_Store
+Thumbs.db
